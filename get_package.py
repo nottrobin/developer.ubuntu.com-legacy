@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#! /usr/bin/env python
 
 import subprocess
 import glob
@@ -7,7 +7,7 @@ import os
 
 ARCH = os.getenv('ARCH', "all")
 DISTRO = os.getenv('DISTRO', "ubuntu")
-RELEASE = os.getenv('SERIES', "vivid")
+RELEASE = os.getenv('SERIES', "xenial")
 APT_SOURCE = os.getenv('SOURCE')
 PACKAGES = sys.argv[1:]
 
@@ -38,7 +38,7 @@ def safe_remove(what, contents_only=False):
                 os.system("rm -rf %s/*" % what)
         if os.path.isfile(what):
             os.remove(what)
-            
+
 def safe_mkdirs(directory):
     if not os.path.exists(directory):
         os.makedirs(directory)
@@ -74,13 +74,13 @@ def download_packages():
     safe_mkdirs(TRUSTED_DIR)
     safe_mkdirs(OUTPUT_DIR)
     os.system("touch %s" % DPKG_STATUS)
-    
+
     os.chdir(TMP_DIR)
     subprocess.call(["cp", LOCAL_KEYRING, TRUSTED_DIR])
     write_sources_list()
 
     call_with_apt_args("apt-get update")
-    
+
     for pkg in PACKAGES:
         call_with_apt_args("apt-cache policy %s" % pkg)
         if call_with_apt_args("apt-get download --allow-unauthenticated %s" % pkg) == 0:
