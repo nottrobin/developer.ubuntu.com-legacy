@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#! /usr/bin/env python
 
 import subprocess
 import glob
@@ -7,7 +7,7 @@ import os
 
 ARCH = os.getenv('ARCH', "all")
 DISTRO = os.getenv('DISTRO', "ubuntu")
-RELEASE = os.getenv('SERIES', "vivid")
+RELEASE = os.getenv('SERIES', "xenial")
 APT_SOURCE = os.getenv('SOURCE')
 PACKAGES = sys.argv[1:]
 
