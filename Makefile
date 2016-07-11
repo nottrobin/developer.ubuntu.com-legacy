@@ -13,6 +13,10 @@ ifdef PORT
 	COMPOSE_OPTIONS += --env PORT=${PORT}
 endif
 
+ifdef DJANGO_DEBUG
+    COMPOSE_OPTIONS += --env DJANGO_DEBUG=${DJANGO_DEBUG}
+endif
+
 ifdef INITIAL_FIXTURE_URL
 	COMPOSE_OPTIONS += --env INITIAL_FIXTURE_URL=${INITIAL_FIXTURE_URL}
 endif
@@ -24,7 +28,7 @@ docker run ${COMPOSE_OPTIONS} \
   --tty --interactive \
   --volume "`pwd`":"`pwd`" \
   --workdir "`pwd`" \
-  ubuntudesign/devrun:v1.1.4
+  ubuntudesign/devrun:v1.1.5
 endef
 
 # Error message if docker is missing
