@@ -85,15 +85,20 @@ if 'OS_TENANT_NAME' in os.environ:
     SWIFT_CONTAINER_NAME = "developer.ubuntu.com-cms-media"
 
     print(
-        "Using Swift container "
-        "{OS_TENANT_NAME}@{OS_REGION_NAME}:{SWIFT_CONTAINER_NAME} "
-        "for CMS media."
+        "Swift credentials found:"
+        "{OS_TENANT_NAME}@{OS_REGION_NAME}:{SWIFT_CONTAINER_NAME}"
+        "Using swift for CMS media."
     ).format(**locals())
 else:
-    print(
-        "No swift credentials found. "
-        "Using local `{MEDIA_ROOT}` directory for CMS media."
-    ).format(**locals())
+    if DEBUG:
+        print(
+            "No swift credentials found. "
+            "Using local `{MEDIA_ROOT}` directory for CMS media."
+        ).format(**locals())
+    else:
+        raise EnvironmentError(
+            '[ERROR]: No swift credentials found - required for CMS media.'
+        )
 
 MIDDLEWARE_CLASSES = (
     'whitenoise.middleware.WhiteNoiseMiddleware',
