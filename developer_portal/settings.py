@@ -18,12 +18,14 @@ from django.utils.translation import ugettext_lazy as _
 
 ADMIN_GROUP = 'ubuntudeveloperportal'
 EDITOR_GROUP = 'ubuntudeveloperportal-editors'
+ALLOWED_HOSTS = ['127.0.0.1']
 SITE_ID = 1
 
+# SECRET_KEY environment variable must be set
 SECRET_KEY = os.environ.get('SECRET_KEY', '')
 
-DEBUG = False
-ALLOWED_HOSTS = ['127.0.0.1']
+# Debug mode can be set with DJANGO_DEBUG=true, otherwise defaults to False
+DEBUG = os.environ.get('DJANGO_DEBUG', '').lower() == 'true'
 
 INSTALLED_APPS = [
     'djangocms_admin_style',
