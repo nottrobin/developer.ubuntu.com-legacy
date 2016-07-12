@@ -17,6 +17,10 @@ ifdef DJANGO_DEBUG
     COMPOSE_OPTIONS += --env DJANGO_DEBUG=${DJANGO_DEBUG}
 endif
 
+ifdef SECRET_KEY
+    COMPOSE_OPTIONS += --env SECRET_KEY=${SECRET_KEY}
+endif
+
 ifdef INITIAL_FIXTURE_URL
 	COMPOSE_OPTIONS += --env INITIAL_FIXTURE_URL=${INITIAL_FIXTURE_URL}
 endif
@@ -28,7 +32,7 @@ docker run ${COMPOSE_OPTIONS} \
   --tty --interactive \
   --volume "`pwd`":"`pwd`" \
   --workdir "`pwd`" \
-  ubuntudesign/devrun:v1.1.5
+  ubuntudesign/devrun:v1.1.7
 endef
 
 # Error message if docker is missing
