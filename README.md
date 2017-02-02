@@ -12,6 +12,7 @@ make run
 
 Some yaml:
 
+    :::yaml
     this:
       is: yaml
       yes: 1
