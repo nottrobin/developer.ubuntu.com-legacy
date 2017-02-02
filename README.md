@@ -12,11 +12,15 @@ make run
 
 Some yaml:
 
-    :::yaml
-    this:
-      is: yaml
-      yes: 1
+``` yaml
+this:
+  is: yaml
+  yes: 1
+```
 
+``` python
+def a_function(arg, arg2=val):
+```
 
 This should serve the site on `http://localhost:8017`.
 
