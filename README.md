@@ -18,6 +18,23 @@ this:
   yes: 1
 ```
 
+``` bash
+#!/bin/sh
+if ! username=$(snapctl get username); then
+    echo "Username is required"
+    exit 1
+fi
+if ! password=$(snapctl get password); then
+    echo "Password is required"
+    exit 1
+fi
+# Handle username and password, perhaps write to a credential file of some sort.
+echo "user=$username" > $SNAP_DATA/credentials
+echo "password=$password" >> $SNAP_DATA/credentials
+chmod 600 $SNAP_DATA/credentials
+```
+
+
 ``` python
 def a_function(arg, arg2=val):
 ```
