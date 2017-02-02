@@ -10,6 +10,13 @@ The simplest way to run the site is to have [docker](https://www.docker.com/) in
 make run
 ```
 
+Some yaml:
+
+    this:
+      is: yaml
+      yes: 1
+
+
 This should serve the site on `http://localhost:8017`.
 
 For more in-depth instructions, see [HACKING.md](HACKING.md).
